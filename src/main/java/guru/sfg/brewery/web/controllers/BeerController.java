@@ -45,7 +45,6 @@ import java.util.UUID;
 public class BeerController {
 
     private final BeerRepository beerRepository;
-    private final BeerInventoryRepository beerInventoryRepository;
 
 
     @RequestMapping("/find")
