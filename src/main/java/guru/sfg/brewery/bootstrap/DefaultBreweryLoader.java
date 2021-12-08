@@ -86,7 +86,7 @@ public class DefaultBreweryLoader implements CommandLineRunner {
                     .upc(BEER_1_UPC)
                     .build();
 
-            beerRepository.save(mangoBobs);
+            mangoBobs = beerRepository.save(mangoBobs);
             beerInventoryRepository.save(BeerInventory.builder()
                     .beer(mangoBobs)
                     .quantityOnHand(500)
@@ -100,7 +100,7 @@ public class DefaultBreweryLoader implements CommandLineRunner {
                     .upc(BEER_2_UPC)
                     .build();
 
-            beerRepository.save(galaxyCat);
+            galaxyCat = beerRepository.save(galaxyCat);
             beerInventoryRepository.save(BeerInventory.builder()
                     .beer(galaxyCat)
                     .quantityOnHand(500)
@@ -114,7 +114,7 @@ public class DefaultBreweryLoader implements CommandLineRunner {
                     .upc(BEER_3_UPC)
                     .build();
 
-            beerRepository.save(pinball);
+            pinball = beerRepository.save(pinball);
             beerInventoryRepository.save(BeerInventory.builder()
                     .beer(pinball)
                     .quantityOnHand(500)
