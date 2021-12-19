@@ -41,9 +41,9 @@ public class UserLoader implements CommandLineRunner {
 
     private List<User> getDefaultUsers(List<Authority> savedAuthorities) {
 
-        Authority adminRole = savedAuthorities.stream().filter(a -> a.getRole().equals("ADMIN")).findFirst().orElse(null);
-        Authority userRole = savedAuthorities.stream().filter(a -> a.getRole().equals("USER")).findFirst().orElse(null);
-        Authority customerRole = savedAuthorities.stream().filter(a -> a.getRole().equals("CUSTOMER")).findFirst().orElse(null);
+        Authority adminRole = savedAuthorities.stream().filter(a -> a.getRole().equals("ROLE_ADMIN")).findFirst().orElse(null);
+        Authority userRole = savedAuthorities.stream().filter(a -> a.getRole().equals("ROLE_USER")).findFirst().orElse(null);
+        Authority customerRole = savedAuthorities.stream().filter(a -> a.getRole().equals("ROLE_CUSTOMER")).findFirst().orElse(null);
 
         User spring = User.builder().username("spring").password(encodePassword("guru")).authority(adminRole).build();
         User user = User.builder().username("user").password(encodePassword("password")).authority(userRole).build();
@@ -56,13 +56,13 @@ public class UserLoader implements CommandLineRunner {
     private List<Authority> getDefaultAuthorities() {
 
         Authority admin = Authority.builder()
-                .role("ADMIN").build();
+                .role("ROLE_ADMIN").build();
 
         Authority user = Authority.builder()
-                .role("USER").build();
+                .role("ROLE_USER").build();
 
         Authority customer = Authority.builder()
-                .role("CUSTOMER").build();
+                .role("ROLE_CUSTOMER").build();
 
         return List.of(admin, user, customer);
 
