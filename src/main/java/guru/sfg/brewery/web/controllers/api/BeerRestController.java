@@ -27,6 +27,7 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.ConstraintViolationException;
@@ -46,6 +47,7 @@ public class BeerRestController {
 
     private final BeerService beerService;
 
+    @PreAuthorize("hasAnyRole('ADMIN', 'CUSTOMER', 'USER')")
     @GetMapping(produces = { "application/json" }, path = "beer")
     public ResponseEntity<BeerPagedList> listBeers(@RequestParam(value = "pageNumber", required = false) Integer pageNumber,
                                                    @RequestParam(value = "pageSize", required = false) Integer pageSize,
@@ -72,6 +74,7 @@ public class BeerRestController {
         return new ResponseEntity<>(beerList, HttpStatus.OK);
     }
 
+    @PreAuthorize("hasAnyRole('ADMIN', 'CUSTOMER', 'USER')")
     @GetMapping(path = {"beer/{beerId}"}, produces = { "application/json" })
     public ResponseEntity<BeerDto> getBeerById(@PathVariable("beerId") UUID beerId,
                                                @RequestParam(value = "showInventoryOnHand", required = false) Boolean showInventoryOnHand){
@@ -85,6 +88,7 @@ public class BeerRestController {
         return new ResponseEntity<>(beerService.findBeerById(beerId, showInventoryOnHand), HttpStatus.OK);
     }
 
+    @PreAuthorize("hasAnyRole('ADMIN', 'CUSTOMER', 'USER')")
     @GetMapping(path = {"beerUpc/{upc}"}, produces = { "application/json" })
     public ResponseEntity<BeerDto> getBeerByUpc(@PathVariable("upc") String upc){
         return new ResponseEntity<>(beerService.findBeerByUpc(upc), HttpStatus.OK);
@@ -111,6 +115,7 @@ public class BeerRestController {
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 
+    @PreAuthorize("hasRole('ADMIN')")
     @DeleteMapping({"beer/{beerId}"})
     public void deleteBeer(@PathVariable("beerId") UUID beerId){
         beerService.deleteById(beerId);
