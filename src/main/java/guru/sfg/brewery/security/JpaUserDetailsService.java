@@ -1,7 +1,8 @@
-package guru.sfg.brewery.repositories.security;
+package guru.sfg.brewery.security;
 
 import guru.sfg.brewery.domain.security.Authority;
 import guru.sfg.brewery.domain.security.User;
+import guru.sfg.brewery.repositories.security.UserRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.core.GrantedAuthority;
@@ -38,7 +39,7 @@ public class JpaUserDetailsService implements UserDetailsService {
 
     private Collection<? extends GrantedAuthority> convertToSpringAuthorities(Set<Authority> authorities) {
         if (authorities != null && !authorities.isEmpty()) {
-            return authorities.stream().map(Authority::getRole).map(SimpleGrantedAuthority::new).collect(Collectors.toList());
+            return authorities.stream().map(Authority::getPermission).map(SimpleGrantedAuthority::new).collect(Collectors.toList());
         }
 
         return new HashSet<>();
