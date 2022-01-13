@@ -19,9 +19,9 @@ package guru.sfg.brewery.web.controllers;
 
 
 import guru.sfg.brewery.domain.Beer;
-import guru.sfg.brewery.domain.security.perms.BeerCreatePermission;
-import guru.sfg.brewery.domain.security.perms.BeerReadPermission;
-import guru.sfg.brewery.domain.security.perms.BeerUpdatePermission;
+import guru.sfg.brewery.security.perms.BeerCreatePermission;
+import guru.sfg.brewery.security.perms.BeerReadPermission;
+import guru.sfg.brewery.security.perms.BeerUpdatePermission;
 import guru.sfg.brewery.repositories.BeerRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
